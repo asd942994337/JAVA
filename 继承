@@ -1,0 +1,88 @@
+继承的特性
+
+    子类拥有父类非 private 的属性、方法。
+
+    子类可以拥有自己的属性和方法，即子类可以对父类进行扩展。
+
+    子类可以用自己的方式实现父类的方法。
+
+    Java 的继承是单继承，但是可以多重继承，单继承就是一个子类只能继承一个父类，多重继承就是，例如 A 类继承 B 类，B 类继承 C 类，所以按照关系就是 C 类是 B 类的父类，B 类是 A 类的父类，这是 Java 继承区别于 C++ 继承的一个特性。
+
+    提高了类之间的耦合性（继承的缺点，耦合度高就会造成代码之间的联系越紧密，代码独立性越差）。java不支持多继承。
+    
+    
+ 继承关键字
+
+继承可以使用 extends 和 implements 这两个关键字来实现继承，而且所有的类都是继承于 java.lang.Object，当一个类没有继承的两个关键字，则默认继承object（这个类在 java.lang 包中，所以不需要 import）祖先类。
+extends关键字
+
+在 Java 中，类的继承是单一继承，也就是说，一个子类只能拥有一个父类，所以 extends 只能继承一个类。
+public class Animal{
+  private String name;
+  private int id;
+  public Animal(String myName,Strng myid){
+    //初始化属性值
+  }
+  public void eat(){//吃东西方法的具体实现}
+  public void sleep(){//睡觉方法的具体实现}
+}
+public class Penguin extends Animal{
+}
+
+
+implements关键字
+
+使用 implements 关键字可以变相的使java具有多继承的特性，使用范围为类继承接口的情况，
+可以同时继承多个接口（接口跟接口之间采用逗号分隔）。
+public interface A{
+    public void eat();
+    public void sleep();
+}
+public interface B{
+    public void show();
+}
+public class implements A,B{
+}
+
+super 与 this 关键字
+super关键字：我们可以通过super关键字来实现对父类成员的访问，用来引用当前对象的父类。
+this关键字：指向自己的引用。
+class Animal{
+  void eat(){
+  System.out.println("animal : eat");
+  }
+}
+class Dog extends Animal{
+   void eat(){
+     System.out.println("dog : eat");
+   }
+   void eatTest(){
+   this.eat();//this调用自己的方法
+   super.eat();//super调用父类方法
+   }
+}
+
+public class Test{
+  public static void main(String[] args){
+    Animal a= new Animal();
+    a.eat();
+    Dog d = new Dog();
+    d.eatTest();
+  }
+}
+
+
+final 关键字声明类可以把类定义为不能继承的，即最终类；或者用于修饰方法，该方法不能被子类重写：
+
+
+重载(Overload)
+重载(overloading) 是在一个类里面，方法名字相同，而参数不同。返回类型可以相同也可以不同。
+每个重载的方法（或者构造函数）都必须有一个独一无二的参数类型列表。
+最常用的地方就是构造器的重载。
+重载规则:
+    被重载的方法必须改变参数列表(参数个数或类型不一样)；
+    被重载的方法可以改变返回类型；
+    被重载的方法可以改变访问修饰符；
+    被重载的方法可以声明新的或更广的检查异常；
+    方法能够在同一个类中或者在一个子类中被重载。
+    无法以返回值类型作为重载函数的区分标准。
